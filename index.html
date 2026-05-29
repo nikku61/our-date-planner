@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Planner</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .hidden { display: none; }
+        /* Style for selected items */
+        .card-item.selected {
+            border-color: #ec4899;
+            background-color: #fdf2f8;
+            color: #db2777;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-pink-50 min-h-screen flex items-center justify-center font-sans antialiased text-gray-800">
+
+    <div class="max-w-md w-full p-6 bg-white rounded-3xl shadow-xl border border-pink-100 text-center mx-4">
+        
+        <div id="screen1" class="space-y-6">
+            <div class="text-6xl animate-bounce">💌</div>
+            <h1 class="text-3xl font-extrabold text-pink-600">Will you go on a date with me?</h1>
+            <div class="flex justify-center gap-4 pt-4 relative">
+                <button id="yesBtn" class="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                    Yes 💖
+                </button>
+                <button id="noBtn" class="px-8 py-3 bg-gray-200 hover:bg-gray-300 text-gray-600 font-bold rounded-full transition-all">
+                    No
+                </button>
+            </div>
+        </div>
+
+        <div id="screen2" class="hidden space-y-6">
+            <h2 class="text-2xl font-bold text-pink-600">So... when are you free?</h2>
+            
+            <div class="text-left space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-1">Pick a Day ✨</label>
+                    <input 
+                        type="date" 
+                        id="dateInput" 
+                        class="w-full p-3 border border-pink-200 rounded-xl focus:outline-pink-400"
+                    >
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-600 mb-1">What Time? ⏰</label>
+                    <select id="timeInput" class="w-full p-3 border border-pink-200 rounded-xl focus:outline-pink-400 bg-white">
+                        <option value="9:00 AM">9:00 AM — Fresh start vibes</option>
+                        <option value="10:00 AM">10:00 AM — Productive morning</option>
+                        <option value="11:00 AM">11:00 AM — Late morning hustle</option>
+                        <option value="12:00 PM">12:00 PM — Noon break time</option>
+                        <option value="1:00 PM">1:00 PM — After lunch grind</option>
+                        <option value="2:00 PM">2:00 PM — Midday focus</option>
+                        <option value="3:00 PM">3:00 PM — Afternoon push</option>
+                        <option value="4:00 PM">4:00 PM — Pre-evening flow</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="toFoodBtn" class="w-full py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full shadow-md">
+                Next step! →
+            </button>
+        </div>
+
+        <div id="screen3A" class="hidden space-y-6">
+            <h2 class="text-2xl font-bold text-pink-600">Where are we feeling? 👑</h2>
+            <p class="text-xs text-gray-400 italic mt-[-12px]">(Pick your spot!)</p>
+
+            <div class="grid grid-cols-2 gap-3 text-left">
+                <div class="card-item p-3 border border-gray-100 bg-gray-50 rounded-2xl flex flex-col items-center cursor-pointer transition-all hover:border-pink-200 rest-card" data-restaurant="Jollibee">
+                    <img src="pics/jollibee.png" alt="Jollibee" class="w-20 h-20 object-cover rounded-xl mb-1">
+                    <span class="text-sm font-bold">Jollibee</span>
+                </div>
+                <div class="card-item p-3 border border-gray-100 bg-gray-50 rounded-2xl flex flex-col items-center cursor-pointer transition-all hover:border-pink-200 rest-card" data-restaurant="Mang Inasal">
+                    <img src="pics/mang-inasal.png" alt="Mang Inasal" class="w-20 h-20 object-cover rounded-xl mb-1">
+                    <span class="text-sm font-bold">Mang Inasal</span>
+                </div>
+                <div class="card-item p-3 border border-gray-100 bg-gray-50 rounded-2xl flex flex-col items-center cursor-pointer transition-all hover:border-pink-200 rest-card" data-restaurant="BIGGS">
+                    <img src="pics/biggs.jpg" alt="BIGGS" class="w-20 h-20 object-cover rounded-xl mb-1">
+                    <span class="text-sm font-bold">BIGGS</span>
+                </div>
+                <div class="card-item p-3 border border-gray-100 bg-gray-50 rounded-2xl flex flex-col items-center cursor-pointer transition-all hover:border-pink-200 rest-card" data-restaurant="Chowking">
+                    <img src="pics/chowking.jpg" alt="Chowking" class="w-20 h-20 object-cover rounded-xl mb-1">
+                    <span class="text-sm font-bold">Chowking</span>
+                </div>
+                <div class="card-item p-3 border border-gray-100 bg-gray-50 rounded-2xl flex flex-col items-center cursor-pointer transition-all hover:border-pink-200 rest-card" data-restaurant="C Shake">
+                    <img src="pics/c_shake.png" alt="C Shake" class="w-20 h-20 object-cover rounded-xl mb-1">
+                    <span class="text-sm font-bold">C Shake</span>
+                </div>
+                <div class="card-item p-3 border border-gray-100 bg-gray-50 rounded-2xl flex flex-col items-center cursor-pointer transition-all hover:border-pink-200 rest-card" data-restaurant="McDo">
+                    <img src="pics/mcdo.png" alt="McDo" class="w-20 h-20 object-cover rounded-xl mb-1">
+                    <span class="text-sm font-bold">McDo</span>
+                </div>
+            </div>
+
+            <button id="toMenuBtn" class="w-full py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full shadow-md">
+                See Menu! →
+            </button>
+        </div>
+
+        <div id="screen3B" class="hidden space-y-6">
+            <h2 id="menuHeading" class="text-2xl font-bold text-pink-600">What are we getting? 🤤</h2>
+            <p class="text-xs text-gray-400 italic mt-[-12px]">(you can pick more than one btw)</p>
+
+            <div id="menuContainer" class="grid grid-cols-2 gap-3 text-left"></div>
+
+            <button id="finishBtn" class="w-full py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full shadow-md">
+                this one! →
+            </button>
+        </div>
+
+        <div id="screen4" class="hidden space-y-6">
+            <h2 class="text-3xl font-extrabold text-pink-600">It's a date! 🎉</h2>
+            <p class="text-gray-500 italic">I'll be the one outside trying to look chill 😎</p>
+            
+            <div class="bg-pink-50 p-5 rounded-2xl border border-pink-100 text-left space-y-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-pink-400 block mb-0.5">When</span>
+                    <p id="summaryWhen" class="font-bold text-gray-700"></p>
+                </div>
+                <hr class="border-pink-100">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-pink-400 block mb-0.5">Food Choice</span>
+                    <p id="summaryFood" class="font-bold text-gray-700"></p>
+                </div>
+            </div>
+
+            <button id="copyBtn" class="w-full py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-full shadow-md flex items-center justify-center gap-2">
+                📋 Copy plan & text me
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // Track state selections
+        let selectedDate = "";
+        let selectedTime = "";
+        let selectedRestaurant = "";
+        let selectedFoods = [];
+
+        // Restaurant Menus Data Object with updated image references
+ // Restaurant Menus Data Object - Keys matched exactly to HTML data attributes
+    const menus = {
+        "Jollibee": [
+            { name: "Chickenjoy", img: "pics/chickenjoy.webp" },
+            { name: "Jolly Spaghetti", img: "pics/jolly_spaghetti.jpg" },
+            { name: "Burger Steak", img: "pics/burger_steak.jpg" },
+            { name: "Burgers & Sandwiches", img: "pics/yumburger.jpg" },
+            { name: "Sides, Snacks & Desserts", img: "pics/peach_mango_pie.webp" }
+        ],
+        "Mang Inasal": [
+            { name: "Chicken Inasal", img: "pics/chicken_inasal.webp" },
+            { name: "Pork Sisig", img: "pics/pork_sisig.webp" },
+            { name: "Pork BBQ", img: "pics/pork_bbq.webp" },
+            { name: "Palabok", img: "pics/palabok.webp" },
+            { name: "Sides, Snacks & Desserts", img: "pics/halo_halo.webp" }
+        ],
+        "BIGGS": [
+            { name: "Bigg's Chicken", img: "pics/biggs_chicken.jpg" },
+            { name: "Burgers & Sandwiches", img: "pics/tower_burger.jpg" },
+            { name: "Classic Meals", img: "pics/beef_salpicao.jpg" },
+            { name: "Bicol Special", img: "pics/bicol_special_laing.jpg" },
+            { name: "Pasta", img: "pics/biggs_spaghetti.jpg" },
+            { name: "Shakes & Desserts", img: "pics/mango_graham_shake.jpg" }
+        ],
+        "Chowking": [
+            { name: "Lauriat", img: "pics/lauriat.png" },
+            { name: "Chao Fan & Rice Meals", img: "pics/chao_fan.webp" },
+            { name: "Dimsum", img: "pics/siomai.webp" },
+            { name: "Noodles & Soups", img: "pics/wonton_mami.webp" },
+            { name: "Chinese-Style Fried Chicken", img: "pics/chinese_chicken.webp" },
+            { name: "Halo-Halo & Desserts", img: "pics/super_halo_halo.png" }
+        ],
+        "C Shake": [
+            { name: "French Fries", img: "pics/french_fries.jpg" },
+            { name: "Takoyaki", img: "pics/takoyaki.jpg" },
+            { name: "Fruit Shakes", img: "pics/fruit_shakes.jpg" },
+            { name: "Shawarma", img: "pics/shawarma.jpg" },
+            { name: "Milktea Boba", img: "pics/milktea_boba.jpg" },
+            { name: "Add-ons & Toppings", img: "pics/pearls_add_ons.png" }
+        ],
+        "McDo": [ // Fixed from "McDonald's" to match HTML
+            { name: "Burgers", img: "/pics/mcdonalds_burgers.jpg" },
+            { name: "Chicken & Platters", img: "/pics/mcchicken.jpg" },
+            { name: "Mc Cafe", img: "/pics/McCafé Americano.jpg" },
+            { name: "Drink & Desserts", img: "/pics/Coke McFloat.jpg" },
+            { name: "Fries", img: "/pics/mcdonalds_fries.jpg" },
+            { name: "Breakfast", img: "/pics/mcdonalds_breakfast.jpg" }
+        ],
+    };
+        // Disable calendar picking for past dates
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementById('dateInput').setAttribute('min', today);
+
+        // Runaway "No" Button Logic
+        const noBtn = document.getElementById('noBtn');
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth) - (window.innerWidth/2);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight) - (window.innerHeight/2);
+            noBtn.style.transform = `translate(${x/4}px, ${y/4}px)`;
+        });
+
+        // Single Selection handling for Restaurant Cards
+        document.querySelectorAll('.rest-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.rest-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedRestaurant = card.getAttribute('data-restaurant');
+            });
+        });
+
+        // Dynamic Menu Card Builder using image objects instead of emojis
+        function renderMenu(restaurantName) {
+            const container = document.getElementById('menuContainer');
+            container.innerHTML = ""; 
+            selectedFoods = []; 
+
+            document.getElementById('menuHeading').innerText = `What are we getting at ${restaurantName}? 🤤`;
+
+            menus[restaurantName].forEach(item => {
+                const itemCard = document.createElement('div');
+                itemCard.className = "card-item p-3 border border-gray-100 bg-gray-50 rounded-2xl flex flex-col items-center cursor-pointer transition-all hover:border-pink-200";
+                itemCard.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="w-20 h-20 object-cover rounded-xl mb-1">
+                    <span class="text-sm font-bold">${item.name}</span>
+                `;
+                
+                itemCard.addEventListener('click', () => {
+                    itemCard.classList.toggle('selected');
+                    if (selectedFoods.includes(item.name)) {
+                        selectedFoods = selectedFoods.filter(food => food !== item.name);
+                    } else {
+                        selectedFoods.push(item.name);
+                    }
+                });
+
+                container.appendChild(itemCard);
+            });
+        }
+
+        // Screen Transitions 
+        // 1. Question -> Logistics
+        document.getElementById('yesBtn').addEventListener('click', () => {
+            document.getElementById('screen1').classList.add('hidden');
+            document.getElementById('screen2').classList.remove('hidden');
+        });
+
+        // 2. Logistics -> Restaurant Picker
+        document.getElementById('toFoodBtn').addEventListener('click', () => {
+            selectedDate = document.getElementById('dateInput').value;
+            selectedTime = document.getElementById('timeInput').value;
+
+            if(!selectedDate) {
+                alert("Please pick a day!");
+                return;
+            }
+
+            document.getElementById('screen2').classList.add('hidden');
+            document.getElementById('screen3A').classList.remove('hidden');
+        });
+
+        // 3. Restaurant Picker -> Menu Picker
+        document.getElementById('toMenuBtn').addEventListener('click', () => {
+            if(!selectedRestaurant) {
+                alert("Please select a place to eat!");
+                return;
+            }
+            renderMenu(selectedRestaurant);
+            document.getElementById('screen3A').classList.add('hidden');
+            document.getElementById('screen3B').classList.remove('hidden');
+        });
+
+        // 4. Menu Picker -> Final Summary Card
+        document.getElementById('finishBtn').addEventListener('click', () => {
+            if (selectedFoods.length === 0) {
+                alert("Please select at least one menu item you're craving!");
+                return;
+            }
+
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            const formattedDate = new Date(selectedDate).toLocaleDateString('en-US', options);
+
+            // Populate the UI text holders
+            document.getElementById('summaryWhen').innerText = `${formattedDate} at ${selectedTime}`;
+            document.getElementById('summaryFood').innerText = `${selectedRestaurant} (${selectedFoods.join(', ')})`;
+
+            document.getElementById('screen3B').classList.add('hidden');
+            document.getElementById('screen4').classList.remove('hidden');
+        });
+
+        // 5. Copy data text to clipboard 
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const finalWhen = document.getElementById('summaryWhen').innerText;
+            const finalFood = document.getElementById('summaryFood').innerText;
+            
+            const planText = `It's a date! 📅 See you on ${finalWhen}. Craving: ${finalFood}. Don't forget! 😉`;
+            
+            navigator.clipboard.writeText(planText).then(() => {
+                alert("Plan copied to clipboard! Go paste it to them!");
+            });
+        });
+    </script>
+</body>
+</html>
